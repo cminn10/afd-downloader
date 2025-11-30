@@ -7,8 +7,8 @@
       "placeholder": "输入内容 ID 或链接"
     },
     "authToken": {
-      "label": "授权 Token",
-      "placeholder": "输入授权 Token",
+      "label": "Token / Cookie",
+      "placeholder": "输入 Token 或 Cookie",
       "tooltip": "如何获取Token:\n1. 访问 https://ifdian.net 或者 https://afdian.com\n2. 右键找到 Inspect(开发者工具) 或者 F12，打开开发者工具\n3. 找到 Application -> Cookies -> auth_token"
     },
     "submit": {

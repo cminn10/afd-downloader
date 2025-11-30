@@ -7,7 +7,7 @@
       "placeholder": "Enter album ID or URL"
     },
     "authToken": {
-      "label": "Auth Token",
+      "label": "Auth Token / Cookie",
       "placeholder": "Enter auth token",
       "tooltip": "How to get token:\n1. Visit https://ifdian.net or https://afdian.com\n2. Right click and select Inspect (DevTools) or press F12\n3. Find Application -> Cookies -> auth_token"
     },

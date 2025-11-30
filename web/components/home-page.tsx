@@ -31,7 +31,7 @@ interface AlbumInfo {
 
 import { AutoScrollText } from "@/components/ui/auto-scroll-text"
 import { CloudDownloadIcon } from "@/components/icons/cloud-download";
-import { parseAlbumId } from "@/lib/utils";
+import { parseAlbumId, parseAuthToken } from "@/lib/utils";
 import { Dictionary } from "@/lib/get-dictionary";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
@@ -151,7 +151,7 @@ export default function HomePage({ dict }: HomePageProps) {
                 type="password"
                 placeholder={dict.form.authToken.placeholder}
                 value={authToken}
-                onChange={(e) => setAuthToken(e.target.value)}
+                onChange={(e) => setAuthToken(parseAuthToken(e.target.value))}
                 disabled={loading}
               />
             </div>
