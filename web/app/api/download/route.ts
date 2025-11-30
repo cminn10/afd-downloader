@@ -164,9 +164,10 @@ export async function GET(request: NextRequest) {
 
   return new Response(stream, {
     headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
-      'Content-Disposition': `attachment; filename="${encodeURIComponent(filename)}"`,
-      'Transfer-Encoding': 'chunked',
+      "Content-Type": "text/plain; charset=utf-8",
+      "Content-Disposition": `attachment; filename="${encodeURIComponent(
+        filename
+      )}"`,
     },
   });
 }
