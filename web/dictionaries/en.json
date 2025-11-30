@@ -1,0 +1,37 @@
+{
+  "title": "Afdian Album Downloader",
+  "description": "Download album posts from Afdian in text format",
+  "form": {
+    "albumId": {
+      "label": "Album ID / Album URL",
+      "placeholder": "Enter album ID or URL"
+    },
+    "authToken": {
+      "label": "Auth Token",
+      "placeholder": "Enter auth token",
+      "tooltip": "How to get token:\n1. Visit https://ifdian.net or https://afdian.com\n2. Right click and select Inspect (DevTools) or press F12\n3. Find Application -> Cookies -> auth_token"
+    },
+    "submit": {
+      "default": "Fetch Album Info",
+      "loading": "Fetching..."
+    },
+    "error": {
+        "title": "Error",
+        "validation": "Please enter both Album ID (or URL) and Auth Token",
+        "default": "An error occurred"
+    }
+  },
+  "result": {
+    "title": "Title",
+    "author": "Author",
+    "totalChapters": "Total Chapters",
+    "toc": {
+      "label": "Table of Contents Format",
+      "placeholder": "Select format",
+      "markdown": "Markdown (## Title)",
+      "number": "Chapter Number (1. Title)"
+    },
+    "notAvailable": "Content not purchased or available for download"
+  }
+}
+

@@ -1,0 +1,36 @@
+{
+  "title": "爱发电内容下载器",
+  "description": "将爱发电内容下载为文本格式",
+  "form": {
+    "albumId": {
+      "label": "内容 ID / 内容链接",
+      "placeholder": "输入内容 ID 或链接"
+    },
+    "authToken": {
+      "label": "授权 Token",
+      "placeholder": "输入授权 Token",
+      "tooltip": "如何获取Token:\n1. 访问 https://ifdian.net 或者 https://afdian.com\n2. 右键找到 Inspect(开发者工具) 或者 F12，打开开发者工具\n3. 找到 Application -> Cookies -> auth_token"
+    },
+    "submit": {
+      "default": "查询内容",
+      "loading": "查询中..."
+    },
+    "error": {
+        "title": "错误",
+        "validation": "请输入内容 ID（或链接）和授权 Token",
+        "default": "发生未知错误"
+    }
+  },
+  "result": {
+    "title": "标题",
+    "author": "作者",
+    "totalChapters": "章节总数",
+    "toc": {
+      "label": "目录格式",
+      "placeholder": "选择格式",
+      "markdown": "Markdown (## 标题)",
+      "number": "章节序号 (1. 标题)"
+    },
+    "notAvailable": "内容未购买或无法下载"
+  }
+}
