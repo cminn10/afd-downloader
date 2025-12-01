@@ -12,7 +12,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   const dict = await getDictionary(locale);
 
   return {
-    title: dict.title,
+    title: 'afd-dl',
     description: dict.description,
   };
 }

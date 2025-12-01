@@ -1,5 +1,5 @@
 {
-  "title": "Afdian Album Downloader",
+  "title": "afd-download",
   "description": "Download album posts from Afdian in text format",
   "form": {
     "albumId": {

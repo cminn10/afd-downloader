@@ -73,6 +73,9 @@ jobs:
             podman run -d \
               --name afd-download-web \
               -p ${{ secrets.VM_PORT }}:3000 \
+              -e RATE_LIMIT_INFO_RPM=${{ secrets.RATE_LIMIT_INFO_RPM || '20' }} \
+              -e RATE_LIMIT_DOWNLOAD_RPM=${{ secrets.RATE_LIMIT_DOWNLOAD_RPM || '3' }} \
+              -e ALLOWED_ORIGINS=${{ secrets.ALLOWED_ORIGINS || '*' }} \
               --restart unless-stopped \
               ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
             

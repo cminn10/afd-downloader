@@ -1,5 +1,12 @@
 import type { NextRequest } from 'next/server';
 import { parseAlbumId } from '@/lib/utils';
+import {
+  checkRateLimit,
+  getClientIp,
+  getRateLimitConfig,
+  getRateLimitHeaders,
+} from '@/lib/rate-limit';
+import { validateAlbumId, validateAuthToken } from '@/lib/request-validator';
 
 const API_URL = 'https://ifdian.net/api/user/get-album-post';
 
@@ -17,18 +24,61 @@ function sleep(ms: number): Promise<void> {
 }
 
 export async function GET(request: NextRequest) {
+  // Rate limiting check
+  const clientIp = getClientIp(request);
+  const rateLimitConfig = getRateLimitConfig('download');
+  const rateLimitResult = checkRateLimit(`download:${clientIp}`, rateLimitConfig);
+
+  const rateLimitHeaders = getRateLimitHeaders(rateLimitResult);
+
+  if (!rateLimitResult.success) {
+    return new Response(JSON.stringify({ error: 'Too many requests. Please try again later.' }), {
+      status: 429,
+      headers: {
+        'Content-Type': 'application/json',
+        ...rateLimitHeaders,
+      },
+    });
+  }
+
   const searchParams = request.nextUrl.searchParams;
   const album_id = searchParams.get('album_id');
   const auth_token = searchParams.get('auth_token');
   const toc_format = searchParams.get('toc_format') || 'markdown';
   const progress = searchParams.get('progress') === 'true';
 
+  // Validate inputs
+  const albumIdValidation = validateAlbumId(album_id);
+  if (!albumIdValidation.valid) {
+    return new Response(JSON.stringify({ error: albumIdValidation.error }), {
+      status: 400,
+      headers: {
+        'Content-Type': 'application/json',
+        ...rateLimitHeaders,
+      },
+    });
+  }
+
+  const authTokenValidation = validateAuthToken(auth_token);
+  if (!authTokenValidation.valid) {
+    return new Response(JSON.stringify({ error: authTokenValidation.error }), {
+      status: 400,
+      headers: {
+        'Content-Type': 'application/json',
+        ...rateLimitHeaders,
+      },
+    });
+  }
+
   const cleanAlbumId = parseAlbumId(album_id || '');
 
   if (!cleanAlbumId || !auth_token) {
     return new Response(JSON.stringify({ error: 'album_id and auth_token are required' }), {
       status: 400,
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        ...rateLimitHeaders,
+      },
     });
   }
 
@@ -164,6 +214,7 @@ export async function GET(request: NextRequest) {
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache',
         Connection: 'keep-alive',
+        ...rateLimitHeaders,
       },
     });
   }
@@ -251,6 +302,7 @@ export async function GET(request: NextRequest) {
       'Content-Type': 'text/plain; charset=utf-8',
       'Content-Disposition': `attachment; filename="${encodeURIComponent(filename)}"`,
       'Content-Length': contentBytes.length.toString(),
+      ...rateLimitHeaders,
     },
   });
 }

@@ -1,5 +1,5 @@
 {
-  "title": "爱发电内容下载器",
+  "title": "afd-下载器",
   "description": "将爱发电内容下载为文本格式",
   "form": {
     "albumId": {

@@ -29,6 +29,11 @@ ENV NODE_ENV=production
 ENV HOSTNAME="0.0.0.0"
 ENV PORT=3000
 
+# API Protection - Default values (can be overridden at runtime)
+ENV RATE_LIMIT_INFO_RPM=20
+ENV RATE_LIMIT_DOWNLOAD_RPM=3
+ENV ALLOWED_ORIGINS=*
+
 # Create a non-root user
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
