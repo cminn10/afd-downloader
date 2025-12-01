@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { cn } from "@/lib/utils";
+import type React from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { cn } from '@/lib/utils';
 
 interface AutoScrollTextProps extends React.HTMLAttributes<HTMLDivElement> {
   children: string;
@@ -16,7 +17,7 @@ export function AutoScrollText({ children, className, ...props }: AutoScrollText
       if (containerRef.current && textRef.current) {
         const containerWidth = containerRef.current.offsetWidth;
         const textWidth = textRef.current.offsetWidth;
-        
+
         if (textWidth > containerWidth) {
           setShouldScroll(true);
           setScrollOffset(containerWidth - textWidth);
@@ -30,10 +31,10 @@ export function AutoScrollText({ children, className, ...props }: AutoScrollText
     checkScroll();
     // Small delay to ensure fonts/layout are settled
     const timer = setTimeout(checkScroll, 100);
-    window.addEventListener("resize", checkScroll);
-    
+    window.addEventListener('resize', checkScroll);
+
     return () => {
-      window.removeEventListener("resize", checkScroll);
+      window.removeEventListener('resize', checkScroll);
       clearTimeout(timer);
     };
   }, [children]);
@@ -41,17 +42,17 @@ export function AutoScrollText({ children, className, ...props }: AutoScrollText
   return (
     <div
       ref={containerRef}
-      className={cn("overflow-hidden whitespace-nowrap w-full", className)}
+      className={cn('overflow-hidden whitespace-nowrap w-full', className)}
       {...props}
     >
       <div
         ref={textRef}
-        className="inline-block"
+        className='inline-block'
         style={
           shouldScroll
             ? ({
-                "--scroll-offset": `${scrollOffset}px`,
-                animation: "scroll-horizontal 8s ease-in-out infinite",
+                '--scroll-offset': `${scrollOffset}px`,
+                animation: 'scroll-horizontal 8s ease-in-out infinite',
               } as React.CSSProperties)
             : undefined
         }
@@ -61,4 +62,3 @@ export function AutoScrollText({ children, className, ...props }: AutoScrollText
     </div>
   );
 }
-

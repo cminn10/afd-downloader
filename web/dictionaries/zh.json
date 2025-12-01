@@ -16,15 +16,18 @@
       "loading": "查询中..."
     },
     "error": {
-        "title": "错误",
-        "validation": "请输入内容 ID（或链接）和授权 Token",
-        "default": "发生未知错误"
+      "title": "错误",
+      "validation": "请输入内容 ID（或链接）和授权 Token",
+      "default": "发生未知错误"
     }
   },
   "result": {
     "title": "标题",
     "author": "作者",
     "totalChapters": "章节总数",
+    "postsLabel": "章",
+    "retrievingChapters": "获取章节中",
+    "downloadingFile": "下载中...",
     "toc": {
       "label": "目录格式",
       "placeholder": "选择格式",

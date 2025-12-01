@@ -16,15 +16,18 @@
       "loading": "Fetching..."
     },
     "error": {
-        "title": "Error",
-        "validation": "Please enter both Album ID (or URL) and Auth Token",
-        "default": "An error occurred"
+      "title": "Error",
+      "validation": "Please enter both Album ID (or URL) and Auth Token",
+      "default": "An error occurred"
     }
   },
   "result": {
     "title": "Title",
     "author": "Author",
     "totalChapters": "Total Chapters",
+    "postsLabel": "posts",
+    "retrievingChapters": "Retrieving chapters",
+    "downloadingFile": "Downloading...",
     "toc": {
       "label": "Table of Contents Format",
       "placeholder": "Select format",
@@ -34,4 +37,3 @@
     "notAvailable": "Content not purchased or available for download"
   }
 }
-

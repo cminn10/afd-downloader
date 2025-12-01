@@ -1,8 +1,8 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  output: "standalone",
+  output: 'standalone',
   // Suppress hydration warnings in development
   onDemandEntries: {
     maxInactiveAge: 25 * 1000,
